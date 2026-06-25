@@ -27,6 +27,7 @@ nav {
   gap: 20px;
   background: #222;
   padding: 10px;
+  flex-wrap: wrap; /* prevents breaking if HTML is different */
 }
 
 nav a {
@@ -34,20 +35,25 @@ nav a {
   text-decoration: none;
 }
 
-/* MAIN GRID */
-.container {
+/* FLEX + GRID SAFE HANDLING */
+
+/* If you already have sections/divs → auto style them */
+main, section, div {
+  padding: 10px;
+}
+
+/* GRID LAYOUT (auto applies if container exists OR fallback) */
+.container, main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
 }
 
-/* CARD */
-.card {
+/* CARD STYLE (applies to most divs safely) */
+div {
   background: white;
-  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 /* FOOTER */
@@ -58,9 +64,9 @@ footer {
   color: white;
 }
 
-/* RESPONSIVE (VERY IMPORTANT) */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .container {
+  .container, main {
     grid-template-columns: 1fr;
   }
 
